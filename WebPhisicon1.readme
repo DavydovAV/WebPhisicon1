@@ -1,0 +1,17 @@
+1. В zip файле лежит готовый проект "как есть" в Visual Studio 2015.
+2. СУБД - Microsoft SQL Server 2014. 
+имя сервера ANDREY-PC\SQLEXPRESS
+название БД Phisicon
+3. В базу добавлен View для удобного и ясного кода. (его нужно создать)
+
+SELECT      c.Title AS cTitle, e.Title, e.CourseId, e.Num, e.[Order], c.Subject, c.Genre, c.Grade
+FROM          Modules e INNER JOIN
+                        Courses c ON e.CourseId = c.Id
+WHERE      e.Href IS NULL
+UNION ALL
+SELECT      c.Title AS cTitle, e.Title, e.CourseId, e.Num, e.[Order], c.Subject, c.Genre, c.Grade
+FROM          Modules e JOIN
+                        Modules e2 ON e.ParentId = e2.iD INNER JOIN
+                        Courses c ON e.CourseId = c.Id
+
+В проекте есть выпадающий двухуровневый список (меню), фильтр и получение данных о курсе через JSON.
